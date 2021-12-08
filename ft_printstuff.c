@@ -6,28 +6,12 @@
 /*   By: jkaczmar <jkaczmar@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 23:19:04 by jkaczmar          #+#    #+#             */
-/*   Updated: 2021/12/06 23:30:43 by jkaczmar         ###   ########.fr       */
+/*   Updated: 2021/12/08 14:53:17 by jkaczmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	printptr(va_list *list)
-{
-	char	*str;
-	void	*ptr;
-
-	ptr = va_arg(*list, void *);
-	write(1, "0x", 2);
-	if (ptr)
-		str = createptraddress(ptr);
-	else
-		str = "0";
-	ft_putstr_fd(str, 1);
-	if (ptr)
-		free(str);
-	return (ft_strlen(str) + 2);
-}
 
 int	printhex(va_list *list, int form)
 {
@@ -38,6 +22,17 @@ int	printhex(va_list *list, int form)
 		return (write(1, "0", 1));
 	puthex(num, form);
 	return (gethexlen(num));
+}
+int	printptr(va_list *list)
+{
+	void	*ptr;
+
+	ptr = va_arg(*list, void *);
+	if (!ptr)
+		return (write(1, "0x0",3));
+	write(1, "0x",2);
+	puthex(((unsigned long long int) ptr), 0);
+	return  (2 + gethexlen((unsigned long long int) ptr));
 }
 
 int	printstr(va_list *list)

@@ -6,13 +6,13 @@
 /*   By: jkaczmar <jkaczmar@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 18:39:41 by jkaczmar          #+#    #+#             */
-/*   Updated: 2021/12/06 18:45:36 by jkaczmar         ###   ########.fr       */
+/*   Updated: 2021/12/08 14:54:02 by jkaczmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	puthex(unsigned int num, int format)
+void	puthex(unsigned long long num, int format)
 {
 	if (num >= 16)
 	{
@@ -33,7 +33,7 @@ void	puthex(unsigned int num, int format)
 	}
 }
 
-int	gethexlen(unsigned int nbr)
+int	gethexlen(unsigned long long nbr)
 {
 	int	i;
 
